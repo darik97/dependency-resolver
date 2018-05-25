@@ -9,37 +9,37 @@ namespace IocExample
 {
     class Program
     {
-        //static void Main(string[] args) 
-        //{ 
-        // var logger = new ConsoleLogger(); 
-        // var sqlConnectionFactory = new SqlConnectionFactory("SQL Connection", logger); 
-        // var createUserHandler = new CreateUserHandler(new UserService(new QueryExecutor(sqlConnectionFactory), 
-        // new CommandExecutor(sqlConnectionFactory), new CacheService(logger, new RestClient("API KEY"))), logger); 
+        static void Main_Example(string[] args)
+        {
+            var logger = new ConsoleLogger();
+            var sqlConnectionFactory = new SqlConnectionFactory("SQL Connection", logger);
+            var createUserHandler = new CreateUserHandler(new UserService(new QueryExecutor(sqlConnectionFactory),
+            new CommandExecutor(sqlConnectionFactory), new CacheService(logger, new RestClient("API KEY"))), logger);
 
-        // createUserHandler.Handle(); 
-        //} 
+            createUserHandler.Handle();
+        }
 
-        //static void Main(string[] args)
-        //{
-        //    IKernel kernel = new StandardKernel();
+        static void Main_1(string[] args)
+        {
+            IKernel kernel = new StandardKernel();
 
-        //    kernel.Bind<CreateUserHandler>().To<CreateUserHandler>();
-        //    kernel.Bind<UserService>().To<UserService>();
-        //    kernel.Bind<ILogger>().To<ConsoleLogger>();
-        //    kernel.Bind<QueryExecutor>().To<QueryExecutor>();
-        //    kernel.Bind<CommandExecutor>().To<CommandExecutor>();
-        //    kernel.Bind<CacheService>().
-        //     ToConstructor(k => new CacheService(k.Inject<ILogger>(), new RestClient("API KEY")));
-        //    kernel.Bind<IConnectionFactory>()
-        //     .ToConstructor(k => new SqlConnectionFactory("SQL Connection", k.Inject<ILogger>()))
-        //     .InSingletonScope();
+            kernel.Bind<CreateUserHandler>().To<CreateUserHandler>();
+            kernel.Bind<UserService>().To<UserService>();
+            kernel.Bind<ILogger>().To<ConsoleLogger>();
+            kernel.Bind<QueryExecutor>().To<QueryExecutor>();
+            kernel.Bind<CommandExecutor>().To<CommandExecutor>();
+            kernel.Bind<CacheService>().
+             ToConstructor(k => new CacheService(k.Inject<ILogger>(), new RestClient("API KEY")));
+            kernel.Bind<IConnectionFactory>()
+             .ToConstructor(k => new SqlConnectionFactory("SQL Connection", k.Inject<ILogger>()))
+             .InSingletonScope();
 
-        //    var createUserHandler = kernel.Get<CreateUserHandler>();
-        //    createUserHandler.Handle();
-        //}
+            var createUserHandler = kernel.Get<CreateUserHandler>();
+            createUserHandler.Handle();
+        }
 
 
-        static void Main(string[] args)
+        static void Main_2(string[] args)
         { 
             var kernel = new MyKernel();
 
